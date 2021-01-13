@@ -1,149 +1,149 @@
-////±¸¿ªÀº 2°³·Î ³ª´µ¾î ÀÖÀ¸¹Ç·Î ¸¸¾à n = 10ÀÌ¸é 10C1 + 10C2....+10C5±îÁö¸¸ °è»ê. Áï, Àý¹Ý¸¸ °è»êÇÏ¸é µÊ
-//// 1. Á¶ÇÕÀ¸·Î ¼±°Å±¸¸¦ ±¸º°ÇÑ´Ù.
-//// 2. °¢ ¼±°Å±¸°¡ ¸Â´Â ¼±°Å±¸¿Í ¿¬°áµÇ¾îÀÖ´ÂÁö ÆÇº°
-//#include <iostream>
-//#include <vector>
-//#include <queue>
-//#include <cmath>
-//using namespace std;
-//
-//int N, connect, ans = 987654321, temp_ans = 0;
-//bool map[11][11];
-//int person[11];
-//bool visit[11];
-//bool area[11];
-//vector<int> A, B;
-//queue<int> Q;
-//
-//void person_cal() {
-//	int A_total = 0, B_total = 0;
-//
-//	for (int i = 1; i <= N; i++) {
-//		if (area[i]) {
-//			A_total += person[i];
-//		}
-//		else {
-//			B_total += person[i];
-//		}
-//	}
-//	temp_ans = abs(A_total - B_total);
-//}
-//
-//bool A_connect_area() {
-//	int cnt = 1;
-//
-//	for (int i = 1; i <= N; i++) {//A¼±°Å±¸ ¿¬°áµÇ¾îÀÖ´ÂÁö ÆÄ¾Ç
-//		visit[i] = false;
-//	}
-//	Q.push(A[0]);
-//	visit[A[0]] = true;
-//
-//	while (!Q.empty()) {
-//		int cur = Q.front();
-//		Q.pop();
-//
-//		for (int i = 1; i <= N; i++) {
-//			if (map[cur][i] == true && area[i] == true && visit[i] == false) {
-//				visit[i] = true;
-//				cnt++;
-//				Q.push(i);
-//			}
-//		}
-//	}
-//	if (A.size() != cnt) {
-//		return false;
-//	}
-//	return true;
-//}
-//
-//bool B_connect_area() {
-//	int cnt = 1;
-//
-//	for (int i = 1; i <= N; i++) {//B¼±°Å±¸ ¿¬°áµÇ¾îÀÖ´ÂÁö ÆÄ¾Ç
-//		visit[i] = false;
-//	}
-//	Q.push(B[0]);
-//	visit[B[0]] = true;
-//
-//	while (!Q.empty()) {
-//		int cur = Q.front();
-//		Q.pop();
-//
-//		for (int i = 1; i <= N; i++) {
-//			if (map[cur][i] == true && area[i] == false && visit[i] == false) {
-//				visit[i] = true;
-//				cnt++;
-//				Q.push(i);
-//			}
-//		}
-//	}
-//	if (B.size() != cnt) {
-//		return false;
-//	}
-//	return true;
-//}
-//
-//void pick(int idx, int cnt) {
-//	if (cnt >= 1) {
-//		if (cnt == N) {
-//			return;
-//		}
-//		//¼±°Å±¸ ³ª´©±â
-//		A.clear(); B.clear();
-//		for (int i = 1; i <= N; i++) {
-//			if (area[i]) {
-//				A.push_back(i);
-//			}
-//			else {
-//				B.push_back(i);
-//			}
-//		}
-//		//¿¬°áµÇ¾îÀÖ´ÂÁö Ã¼Å©ÇÔ¼ö, °è»ê
-//		temp_ans = 0;
-//		if (A_connect_area() && B_connect_area()) {
-//			person_cal();
-//			if (ans > temp_ans) {
-//				ans = temp_ans;
-//			}
-//		}
-//	}
-//	for (int i = idx; i <= N; i++) {
-//		if (area[i]) {
-//			continue;
-//		}
-//		area[i] = true;
-//		pick(i, cnt + 1);
-//		area[i] = false;
-//	}
-//}
-//
-//int main() {
-//	ios::sync_with_stdio(false);
-//	cin.tie(0);
-//
-//	cin >> N;
-//
-//	for (int i = 1; i <= N; i++) {//°¢ ±¸¿ª¿¡ ÀÎ¿ø ¹Þ±â
-//		cin >> person[i];
-//	}
-//
-//	for (int i = 1; i <= N; i++) { // map¸¸µé±â
-//		int value;
-//		cin >> connect;
-//		for (int j = 1; j <= connect; j++) {
-//			cin >> value;
-//			map[i][value] = true;
-//			map[value][i] = true;
-//		}
-//	}
-//	pick(1, 0);
-//
-//	if (ans == 987654321) {
-//		cout << -1 << '\n';
-//	}
-//	else {
-//		cout << ans << '\n';
-//	}
-//
-//	return 0;
-//}
+//êµ¬ì—­ì€ 2ê°œë¡œ ë‚˜ë‰˜ì–´ ìžˆìœ¼ë¯€ë¡œ ë§Œì•½ n = 10ì´ë©´ 10C1 + 10C2....+10C5ê¹Œì§€ë§Œ ê³„ì‚°. ì¦‰, ì ˆë°˜ë§Œ ê³„ì‚°í•˜ë©´ ë¨
+// 1. ì¡°í•©ìœ¼ë¡œ ì„ ê±°êµ¬ë¥¼ êµ¬ë³„í•œë‹¤.
+// 2. ê° ì„ ê±°êµ¬ê°€ ë§žëŠ” ì„ ê±°êµ¬ì™€ ì—°ê²°ë˜ì–´ìžˆëŠ”ì§€ íŒë³„
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <cmath>
+using namespace std;
+
+int N, connect, ans = 987654321, temp_ans = 0;
+bool map[11][11];
+int person[11];
+bool visit[11];
+bool area[11];
+vector<int> A, B;
+queue<int> Q;
+
+void person_cal() {
+	int A_total = 0, B_total = 0;
+
+	for (int i = 1; i <= N; i++) {
+		if (area[i]) {
+			A_total += person[i];
+		}
+		else {
+			B_total += person[i];
+		}
+	}
+	temp_ans = abs(A_total - B_total);
+}
+
+bool A_connect_area() {
+	int cnt = 1;
+
+	for (int i = 1; i <= N; i++) {//Aì„ ê±°êµ¬ ì—°ê²°ë˜ì–´ìžˆëŠ”ì§€ íŒŒì•…
+		visit[i] = false;
+	}
+	Q.push(A[0]);
+	visit[A[0]] = true;
+
+	while (!Q.empty()) {
+		int cur = Q.front();
+		Q.pop();
+
+		for (int i = 1; i <= N; i++) {
+			if (map[cur][i] == true && area[i] == true && visit[i] == false) {
+				visit[i] = true;
+				cnt++;
+				Q.push(i);
+			}
+		}
+	}
+	if (A.size() != cnt) {
+		return false;
+	}
+	return true;
+}
+
+bool B_connect_area() {
+	int cnt = 1;
+
+	for (int i = 1; i <= N; i++) {//Bì„ ê±°êµ¬ ì—°ê²°ë˜ì–´ìžˆëŠ”ì§€ íŒŒì•…
+		visit[i] = false;
+	}
+	Q.push(B[0]);
+	visit[B[0]] = true;
+
+	while (!Q.empty()) {
+		int cur = Q.front();
+		Q.pop();
+
+		for (int i = 1; i <= N; i++) {
+			if (map[cur][i] == true && area[i] == false && visit[i] == false) {
+				visit[i] = true;
+				cnt++;
+				Q.push(i);
+			}
+		}
+	}
+	if (B.size() != cnt) {
+		return false;
+	}
+	return true;
+}
+
+void pick(int idx, int cnt) {
+	if (cnt >= 1) {
+		if (cnt == N) {
+			return;
+		}
+		//ì„ ê±°êµ¬ ë‚˜ëˆ„ê¸°
+		A.clear(); B.clear();
+		for (int i = 1; i <= N; i++) {
+			if (area[i]) {
+				A.push_back(i);
+			}
+			else {
+				B.push_back(i);
+			}
+		}
+		//ì—°ê²°ë˜ì–´ìžˆëŠ”ì§€ ì²´í¬í•¨ìˆ˜, ê³„ì‚°
+		temp_ans = 0;
+		if (A_connect_area() && B_connect_area()) {
+			person_cal();
+			if (ans > temp_ans) {
+				ans = temp_ans;
+			}
+		}
+	}
+	for (int i = idx; i <= N; i++) {
+		if (area[i]) {
+			continue;
+		}
+		area[i] = true;
+		pick(i, cnt + 1);
+		area[i] = false;
+	}
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+
+	cin >> N;
+
+	for (int i = 1; i <= N; i++) {//ê° êµ¬ì—­ì— ì¸ì› ë°›ê¸°
+		cin >> person[i];
+	}
+
+	for (int i = 1; i <= N; i++) { // mapë§Œë“¤ê¸°
+		int value;
+		cin >> connect;
+		for (int j = 1; j <= connect; j++) {
+			cin >> value;
+			map[i][value] = true;
+			map[value][i] = true;
+		}
+	}
+	pick(1, 0);
+
+	if (ans == 987654321) {
+		cout << -1 << '\n';
+	}
+	else {
+		cout << ans << '\n';
+	}
+
+	return 0;
+}
