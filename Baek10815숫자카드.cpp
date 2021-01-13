@@ -6,12 +6,6 @@ int N, M;
 int my_card[500001];
 int tmp_check_card[500001];
 int check_card[500001];
-//
-//bool search_the_number(int left, int right, int target) {
-//	int mid = (left + right) / 2;
-//
-//	while()
-//}
 
 void merge(int left, int right) {
 	int mid = (left + right) / 2;
@@ -67,11 +61,6 @@ int main() {
 	partition(0, N-1);
 
 	for (int i = 0; i < M; i++) {
-		//if (search_the_number(0, N-1, my_card[i])) {
-		//	cout << 1 << ' ';
-		//	continue;
-		//}
-		//cout << 0 << ' ';
 		if (binary_search(check_card, check_card + N, my_card[i])) {
 			cout << 1 << ' ';
 		}
